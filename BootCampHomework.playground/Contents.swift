@@ -41,6 +41,6 @@ class Calculator{
 //       print("remainderResult : \(remainderResult)")
     }
 }
-let myObject = Calculator()
-myObject.printResult()
+let calculator = Calculator()
+calculator.printResult()
 
