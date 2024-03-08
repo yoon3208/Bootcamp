@@ -43,4 +43,3 @@ class Calculator{
 }
 let calculator = Calculator()
 calculator.printResult()
-
