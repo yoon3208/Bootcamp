@@ -75,7 +75,27 @@ class BaseballGame {
                                return (strike, ball)
                 }
             }
-            
+
+        //  처음 코드를 실행할 때, 해당 코드의 위치입니다.
+    //         class BaseballGame {
+    // func start() {
+    //     print("< 게임을 시작합니다 >")
+        
+    //     let answer = AnswerNumber().makeAnswer()
+        
+    //     class AnswerNumber {
+    //         func makeAnswer() -> Int {
+    //             var answer = 0
+    //             for i in 123...987{
+    //                 let number = String(i).map { String($0) }
+    //                 if number[0] == number[1] || number[0] == number[2] || number[1] == number[2] || number.contains("0") {
+    //                     continue
+    //                 }
+    //                 answer = i
+    //                 break
+    //             }
+    //             return answer
+                
         }
     }
     
