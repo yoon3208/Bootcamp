@@ -8,39 +8,41 @@
 import UIKit
 
 class ViewController: UIViewController{
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     //UIAlertController를 활용하여 텍스트 필드 추가
     @IBAction func addButton(_ sender: Any) {
         
+        
         let title = "할 일 추가"
         let message = ""
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let ok = UIAlertAction(title: "추가", style: .default){(_) in
-            if let txt = alert.textFields?[0]{
-                if txt.text?.isEmpty != true{
-                    print("입력값 \(txt.text!)")
-                }else{
-                    print("입력된 값이 없습니다")
-                }
-            }
-        }
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        
-        alert.addTextField(){ (tf) in
-            tf.placeholder = "텍스트를 입력하시오"
-
+        alert.addTextField(){ textField in
+            textField.placeholder = "텍스트를 입력하시오"
             
         }
         
+        let addAction = UIAlertAction(title: "추가", style: .default){ [weak self] _ in
+            guard let self = self, let textField = alert.textFields?.first, let text = textField.text, !text.isEmpty else{return}
+            
+            self.todo.append(text)
+            self.tableView.reloadData()
+            
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel){ _ in
+            print("취소 버튼이 눌렸습니다")
+        }
+        alert.addAction(cancel)
+        alert.addAction(addAction)
+        
+        
+        
         self.present(alert, animated: true, completion: nil)
-
+        
     }
-//기본 데이터 소스
+    //예시 TodoList
     
     var todo = ["Title1", "Title2", "Title3"]
     
@@ -53,7 +55,7 @@ class ViewController: UIViewController{
         
         
         let nibName = UINib(nibName: "TableViewCell", bundle: nil)
-                tableView.register(nibName, forCellReuseIdentifier: "TodoCell")
+        tableView.register(nibName, forCellReuseIdentifier: "TodoCell")
     }
 }
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
@@ -72,6 +74,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
 }
+        
+        
 class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var checkButton: UISwitch!
@@ -89,3 +93,4 @@ class TableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
+
