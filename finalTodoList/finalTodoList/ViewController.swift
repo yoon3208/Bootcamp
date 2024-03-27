@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  finalTodoList
 //
-//  Created by SAMSUNG on 2024/03/21.
-//
 
 import UIKit
 
@@ -43,6 +41,11 @@ class ViewController: UIViewController{
         
     }
     //예시 TodoList
+    struct TodoItem{
+        var id: Int
+        var todo: String
+        var isCompleted: Bool
+    }
     
     var todo = ["Title1", "Title2", "Title3"]
     
@@ -83,6 +86,25 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var todoLabel: UILabel!
     
     @IBAction func tappedSwitchButton(_ sender: UISwitch) {
+        let isCompleted = sender.isOn
+        
+        if isCompleted{
+            if let label = self.todoLabel{
+                
+                var attributeString = NSMutableAttributedString(string: "\(todoLabel.text!)")
+                let attributes: [NSAttributedString.Key : Any] = [
+                    .strikethroughStyle: 2
+                ]
+                attributeString.addAttributes(attributes, range: NSRange(location: 0, length: attributeString.length))
+                label.attributedText = attributeString
+            }
+        }else{
+            if let label = self.todoLabel{
+                label.attributedText = NSAttributedString(string: label.text ?? "")
+            }
+        }
+
+        
     }
     
 
