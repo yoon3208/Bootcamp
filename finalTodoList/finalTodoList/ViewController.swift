@@ -85,6 +85,7 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var todoLabel: UILabel!
     
+    //스위치 off시에 글씨에 선 긋기 
     @IBAction func tappedSwitchButton(_ sender: UISwitch) {
         let isCompleted = sender.isOn
         
