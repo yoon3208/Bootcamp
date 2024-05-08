@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  BookApp
+//
+//  Created by SAMSUNG on 5/6/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BOOK_API_KEY = 077147e850a3f741950aa0476d39fe59
