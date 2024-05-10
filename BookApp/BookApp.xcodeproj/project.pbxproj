@@ -20,6 +20,8 @@
 		F12F34152BE913FA00D4FE63 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F12F34142BE913FA00D4FE63 /* SnapKit-Dynamic */; };
 		F12F341C2BE9177800D4FE63 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12F341B2BE9177800D4FE63 /* SecondViewController.swift */; };
 		F17D8C102BEA25BB007CA74A /* DetailVeiwController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17D8C0F2BEA25BB007CA74A /* DetailVeiwController.swift */; };
+		F1A550DA2BEDA412000772BB /* CoreData .swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A550D92BEDA412000772BB /* CoreData .swift */; };
+		F1A550DC2BEDA41A000772BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A550DB2BEDA41A000772BB /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		F12F34162BE9143400D4FE63 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		F12F341B2BE9177800D4FE63 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F17D8C0F2BEA25BB007CA74A /* DetailVeiwController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVeiwController.swift; sourceTree = "<group>"; };
+		F1A550D92BEDA412000772BB /* CoreData .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreData .swift"; sourceTree = "<group>"; };
+		F1A550DB2BEDA41A000772BB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 		F12F34092BE9136D00D4FE63 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F1A550DB2BEDA41A000772BB /* CoreDataManager.swift */,
+				F1A550D92BEDA412000772BB /* CoreData .swift */,
 				F12F340A2BE9138700D4FE63 /* APIDataManager.swift */,
 				F12F340C2BE913A100D4FE63 /* BookData.swift */,
 			);
@@ -183,12 +189,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F12F33FD2BE9130F00D4FE63 /* BookApp.xcdatamodeld in Sources */,
+				F1A550DA2BEDA412000772BB /* CoreData .swift in Sources */,
 				F12F340B2BE9138700D4FE63 /* APIDataManager.swift in Sources */,
 				F12F340D2BE913A100D4FE63 /* BookData.swift in Sources */,
 				F12F341C2BE9177800D4FE63 /* SecondViewController.swift in Sources */,
 				F12F33F72BE9130F00D4FE63 /* ViewController.swift in Sources */,
 				F17D8C102BEA25BB007CA74A /* DetailVeiwController.swift in Sources */,
 				F12F33F32BE9130F00D4FE63 /* AppDelegate.swift in Sources */,
+				F1A550DC2BEDA41A000772BB /* CoreDataManager.swift in Sources */,
 				F12F33F52BE9130F00D4FE63 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

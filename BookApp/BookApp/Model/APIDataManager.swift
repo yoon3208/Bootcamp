@@ -36,7 +36,7 @@ class APIDataManager {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.allHTTPHeaderFields = [
-                "Authorization": "KakaoAK 077147e850a3f741950aa0476d39fe59"
+                "Authorization": "KakaoAK \(apiKey)"
             ]
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in

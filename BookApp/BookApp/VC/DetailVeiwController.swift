@@ -12,11 +12,11 @@ class DetailViewController: UIViewController {
     
 //    let apiDataManager = APIDataManager()
     var results: Document?
+    var Core = CoreDataManager()
     
 //    let detailStackView = UIStackView()
     private let scrollView = UIScrollView()
     private let detailView = UIView()
-    private let backButton = UIButton()
     let detailImageVeiw = UIImageView()
     let detailTitleLabel = UILabel()
     let detailPriceLabel = UILabel()
@@ -34,15 +34,16 @@ class DetailViewController: UIViewController {
         view.addSubview(detailTitleLabel)
         view.addSubview(detailPriceLabel)
         view.addSubview(detailContentsLabel)
-        view.addSubview(backButton)
         view.addSubview(wishButton)
         view.addSubview(cancelButton)
+//        scrollView.addSubview(detailContentsLabel)
         
         scrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(0)
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(0)
-            make.bottom.equalToSuperview().offset(-105)
+            make.top.equalToSuperview().offset(490)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-100)
+            make.bottom.equalTo(detailContentsLabel.snp.bottom).offset(100)
         }
         detailImageVeiw.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(160)
@@ -63,22 +64,16 @@ class DetailViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-700)
         }
         detailPriceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(450)
+            make.top.equalToSuperview().offset(480)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-350)
+            make.bottom.equalToSuperview().offset(-330)
         }
         detailContentsLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(500)
+            make.top.equalToSuperview().offset(490)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-105)
-        }
-        backButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(50)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-330)
-            make.bottom.equalToSuperview().offset(-760)
+            make.bottom.equalToSuperview().offset(-100)
         }
         wishButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(760)
@@ -96,12 +91,11 @@ class DetailViewController: UIViewController {
     
     private func setDetail() {
         
-        scrollView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        detailImageVeiw.backgroundColor = .gray
+        scrollView.backgroundColor = .clear
+        detailImageVeiw.backgroundColor = .clear
         detailTitleLabel.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        detailPriceLabel.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        detailContentsLabel.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        backButton.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        detailPriceLabel.backgroundColor = .clear
+        detailContentsLabel.backgroundColor = .clear
         wishButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         cancelButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
@@ -122,18 +116,34 @@ class DetailViewController: UIViewController {
         detailContentsLabel.numberOfLines = 0
         detailContentsLabel.font = UIFont.systemFont(ofSize: 15)
         
-        backButton.setTitle("X", for: .normal)
-        backButton.layer.cornerRadius = 20
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        
         wishButton.setTitle("담기", for: .normal)
         wishButton.layer.cornerRadius = 20
+        wishButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         
         cancelButton.setTitle("X", for: .normal)
         cancelButton.layer.cornerRadius = 20
+        cancelButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: detailContentsLabel.frame.maxY + 100)
+        
+        if let imageUrlString = self.results?.thumbnail,
+           let imageUrl = URL(string: imageUrlString) {
+            DispatchQueue.global().async {
+                if let imageData = try? Data(contentsOf: imageUrl) {
+                    DispatchQueue.main.async {
+                        self.detailImageVeiw.image = UIImage(data: imageData)
+                    }
+                }
+            }
+        }
     }
+    
     @objc private func backButtonTapped() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func addButtonTapped() {
+        Core.saveWish(myWish: MyWish(title: results!.title, thumbnail: results!.thumbnail, price: results!.price, contents: results!.contents))
     }
     override func viewDidLoad() {
         super.viewDidLoad()

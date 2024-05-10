@@ -18,17 +18,13 @@ struct Document: Codable {
     let title: String
     let contents: String
     let thumbnail: String
-    let datetime: String
     let price: Int
-    let url: String
     enum CodingKeys: String, CodingKey {
 //        case id
         case title
         case contents
         case thumbnail
-        case datetime
         case price
-        case url
         
     }
 }
