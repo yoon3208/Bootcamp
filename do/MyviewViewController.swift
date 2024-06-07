@@ -16,5 +16,6 @@ class MyviewViewController: UIViewController, Table {
         MytableView.backgroundColor = .blue
         
     }
+    
 }
 
